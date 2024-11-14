@@ -9,13 +9,13 @@ Parámetros: profesores (array de objetos profesor), categoria (un número).
 Retorno: array de objetos profesor que pertenecen a la categoría indicada. */
 
 let profesoresCategoria = (profesores, categoria) => {
-    let nombre = [];
-    for (let i = 0; i < profesores.length; i++) {
-        if (profesores[i].categoria == categoria) {
-            nombre.push(profesores[i].nombre);
-        }
-    }
-    return nombre;
+ let profesoresFiltrados = [];
+ for (let i = 0; i < profesores.length; i++) {
+     if(profesores[i].categoria == categoria){
+         profesoresFiltrados.push(profesores[i]);
+     }
+ }
+ return profesoresFiltrados
 }
 
 let profesores = [
@@ -33,8 +33,11 @@ let profesores = [
 
 let salida = document.getElementById("salida");
 
-salida.innerHTML = JSON.stringify(profesoresCategoria(profesores, 1));
-salida.innerHTML += "<br>" + JSON.stringify(profesoresCategoria(profesores, 2));
-salida.innerHTML += "<br>" + JSON.stringify(profesoresCategoria(profesores, 3));
-salida.innerHTML += "<br>" + JSON.stringify(profesoresCategoria(profesores, 4));
-salida.innerHTML += "<br>" + JSON.stringify(profesoresCategoria(profesores, 5));
+let profesoresCategoria1 = profesoresCategoria(profesores, 1);
+salida.innerHTML =  `Profesores de categoria 1: <br> `;
+profesoresCategoria1.forEach(profesor => {
+    salida.innerHTML += `${profesor.categoria} - ${profesor.nombre} - ${profesor.sexo} <br>`
+});
+
+
+
